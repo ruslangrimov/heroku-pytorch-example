@@ -21,8 +21,7 @@ app.debug = debug
 os.environ['TORCH_HOME'] = '/app/torch_home/'
 model = models.resnet18(pretrained=True)
 model.eval()
-normalize = T.Compose([T.Resize(256), T.CenterCrop(224),
-                       T.ToTensor(),
+normalize = T.Compose([T.Resize(256), T.CenterCrop(224), T.ToTensor(),
                        T.Normalize(mean=[0.485, 0.456, 0.406],
                                    std=[0.229, 0.224, 0.225])
                        ])
@@ -59,8 +58,6 @@ def upload_image():
 
         except Exception as e:
             r['result'] = f"Exception {type(e)}: {str(e)}"
-
-        return jsonify(r)
 
     return jsonify(r)
 
