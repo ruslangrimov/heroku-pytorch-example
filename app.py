@@ -16,6 +16,7 @@ sys.path.append('/app')
 debug = os.environ.get('FLASK_DEBUG', False)
 app = Flask(__name__, static_url_path="/static", static_folder="static")
 app.debug = debug
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 # Pytorch
 os.environ['TORCH_HOME'] = '/app/torch_home/'
@@ -64,3 +65,4 @@ def upload_image():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', debug=debug)
+
